@@ -19,6 +19,7 @@ def get_id_having_address(url):
         return -1
 
 def get_global_rank(domain):
+    # return -1
     try:
         rank_checker_response = requests.post("https://www.checkpagerank.net/index.php", {
             "name": domain
@@ -147,8 +148,9 @@ def generate(url):
     # if response == "":
     #     print (1)
     features.append(get_id_having_address(url))
-    # print ()
+    # print ("st")
     features.append(get_global_rank(domain))
+    # print ("fs")
     features.append(get_https_domain(domain))
     features.append(get_https_domain(domain))
     # print (1)
@@ -178,4 +180,4 @@ def generate(url):
     # print (features)
     return (features)
 # generate("http://uaanow.com/admin/online/order.php?fav.1&amp;amp...")
-# generate("http://www.gyrogeo.com/n4")
+# generate("http://hiroba.dqx.jp.isrel.usa.cc/account/app/svc/login.html")

@@ -22,7 +22,7 @@ def readData():
 def minize(dataX):
 	x_max = np.max(dataX, axis = 0)
 	x_min = np.min(dataX, axis = 0)
-	avange = np.sum(dataX, axis = 0)/1534
+	avange = np.sum(dataX, axis = 0)/2759
 	for i in range(39):
 		r = x_max[i] - x_min[i]
 		if r==0:
@@ -37,11 +37,12 @@ def tensorLogistc():
 
 	dataX, dataY = readData()
 	dataX = minize(dataX)
+	sample = 2200
 	# dataY = dataY.reshape(dataY.shape[0])
-	x_train = dataX[:1800, :]
-	x_test = dataX[1800:, :]
-	y_train = dataY[:1800]
-	y_test = dataY[1800:]
+	x_train = dataX[:sample, :]
+	x_test = dataX[sample:, :]
+	y_train = dataY[:sample]
+	y_test = dataY[sample:]
 
 	m = dataX.shape[0]
 	n = 39
@@ -68,10 +69,10 @@ def tensorLogistc():
 	init = tf.global_variables_initializer()
 	with tf.Session() as sess:
 		sess.run(init)
-		for i in range(5001):
+		for i in range(10001):
 			sess.run(optimizer, feed_dict = {x : x_train, y : y_train})
-			if i%1000==0:
-				print (sess.run(cost, feed_dict = {x : x_train, y : y_train}))
+			# if i%1000==0:
+			# 	print (sess.run(cost, feed_dict = {x : x_train, y : y_train}))
 		re = sess.run(W)
 		res = np.matmul(x_test, re.T)
 		for i in range(m-m_train):

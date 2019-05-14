@@ -1,9 +1,9 @@
 import tensorflow as tf 
-import numpy as np 
-from sklearn import svm
+import numpy as np
 import pickle
 import cv2
 import csv
+from sklearn.neighbors import KNeighborsClassifier as KNN
 
 def readData():
 	file = open("Dataset/train.csv","r")
@@ -37,7 +37,7 @@ def minize(dataX):
 			r = abs(r)
 		dataX[: , i:i+1] = (dataX[: , i:i+1] - avange[i])/r
 	return dataX
-def run_svm():
+def run_KNN():
 	m = 2200
 	dataX, dataY = readData()
 	dataX = minize(dataX)
@@ -47,9 +47,10 @@ def run_svm():
 	y_train = dataY[:m]
 	y_test = dataY[m:]
 
-	c = 100000.0
-	model = svm.SVC(C = c, kernel = 'rbf', gamma = 0.1)
-	model.fit(x_train, y_train)
-	result = model.score(x_test, y_test)
+	knn = KNN(n_neighbors = 10, algorithm = "ball_tree", 
+					weights = "distance")
+	knn.fit(x_train, y_train)
+	result = knn.score(x_test, y_test)
 	print (result)
-run_svm()
+	
+run_KNN()

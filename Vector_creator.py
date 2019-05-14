@@ -28,7 +28,7 @@ def Total_Dots(link):
 
 def Total_Delims(str):
 	"""
-	Function to calculate the Total Number of Delimeters in a URL
+	Function to calculate the Total Number of Delimeters in a URLs
 	"""
 	delim=['-','_','?','=','&']
 	count=0
@@ -87,6 +87,7 @@ def Construct_Vector(mystr):
 	# print (info)
 	###print('Domain Name: ',dom)
 	doma_hyph_count=no_of_hyphens_in_domain(dom)
+	# print (doma_hyph_count)
 	vec.append(int(doma_hyph_count))					#Appending Number of hyphens in Domain of URL to the Vector
 	# print (doma_hyph_count)
 	domain_Tokens=(dom).split('.')
@@ -116,7 +117,7 @@ def Construct_Vector(mystr):
 	vec.append(int(dir_len))								#Appeding Directory length to the URL to the Vector
 	#print('Directory Length: ',dir_len)
 	num_subdir=len(path_tokens)
-	#print('Number of Subdirectories :',num_subdir)
+	# print('Number of Subdirectories :',num_subdir)
 	vec.append(num_subdir)									#Appending Number of Subdirectories	Present in the URL to the Vector
 	# print('Path Tokens : ',path_tokens)
 	# print (domain_Tokens)
@@ -131,6 +132,7 @@ def Construct_Vector(mystr):
 	# print (is_ip)
 	vec.append(is_ip) 								#Presence of ip address Yes:1, No:0
 	##print('ASN number :',asn_num)
+	# print (domain_Tokens)
 	domain_tok_lengts=[]
 	for i in domain_Tokens:
 		domain_tok_lengts.append(len(i))
@@ -176,6 +178,7 @@ def Construct_Vector(mystr):
 
 		### Define Condition whether file and arguments present in the URL
 		tmp=file_n_args.split('?')
+		# print (tmp)
 		file=tmp[0]
 		# print (tmp)
 		if len(tmp)>1:
@@ -337,3 +340,6 @@ def Construct_Vector(mystr):
 		zipcode=-1
 		vec.append(zipcode)
 	return vec
+# s = "http://customprint.in/catalog/language/spanish/module/sign.htm..."
+# print (s)
+# Construct_Vector(s)
